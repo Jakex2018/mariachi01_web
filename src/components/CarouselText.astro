@@ -1,0 +1,73 @@
+<div class="flex relative">
+    <!-- Contenedor principal de Swiper -->
+    <div class="swiper">
+        <!-- Wrapper adicional requerido -->
+        <div class="swiper-wrapper [&>div]:min-w-[50vh]">
+            <!-- Los slides -->
+            <div class="swiper-slide">
+                <span>Disfruta de la musica del mariachi</span>
+            </div>
+            <div class="swiper-slide">
+                <span>Celebre tus repertorios favoritos</span>
+            </div>
+            <div class="swiper-slide">
+                <span>Descubre nuevos repertorios</span>
+            </div>
+            <div class="swiper-slide">
+                <span>Conoce a nuestros mariachis</span>
+            </div>
+        </div>
+    </div>
+    <!-- Botones de navegación -->
+    <div class="absolute top-3 -right-5">
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+    </div>
+</div>
+
+<script>
+    // Core de Swiper y estilos
+    import Swiper from "swiper";
+    import "swiper/css";
+    // Módulo Navigation de Swiper y estilos
+    import { Navigation } from "swiper/modules";
+    import "swiper/css/navigation";
+    // Importar el módulo Autoplay
+    import { Autoplay } from "swiper/modules";
+    import "swiper/css/autoplay";
+
+    // Configurar Swiper
+    const swiper = new Swiper(".swiper", {
+        modules: [Navigation, Autoplay], // agregar el módulo Autoplay
+        loop: true, // los slides estarán en bucle
+        slidesPerView: 1, // número de slides visibles a la vez
+        spaceBetween: 10, // separación entre slides en px
+        navigation: {
+            // definir botones next y prev para el módulo Navigation
+            prevEl: ".swiper-button-prev",
+            nextEl: ".swiper-button-next",
+        },
+        autoplay: {
+            delay: 2000, // intervalo entre cada transición (en milisegundos)
+            disableOnInteraction: false, // continuar el autoplay incluso después de la interacción con el carrusel
+        },
+    });
+</script>
+
+<style>
+    .swiper-slide {
+        width: 200px;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+    .swiper-slide img {
+        width: 100%;
+        height: 150%;
+    }
+    .swiper-button-prev {
+     display: none;
+    }
+    .swiper-button-next {
+        display: none;
+    }
+</style>

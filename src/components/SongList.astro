@@ -1,0 +1,67 @@
+---
+import { Image } from "astro:assets";
+---
+
+<section
+    id="songList"
+    class="bg-[#000000] flex items-center justify-center relative lg:min-h-[80vh] min-h-[130vh] w-full z-20"
+>
+    <div
+        class="absolute top-0 right-0
+    min-w-[20vh] min-h-[40vh] bg-gradient-to-r from-transparent via-[#FFD700 to-transparent opacity-40 blur-3xl rotate-45 pointer-events-none"
+    >
+    </div>
+    <div class="">
+        <Image
+            src="/vectors/Rectangle 6.svg"
+            class="absolute lg:-top-[80%] -top-[44%] left-0 -z-0"
+            alt=""
+            width={500}
+            height={1000}
+        />
+        <Image
+            src="/vectors/Rectangle 7.svg"
+            class="absolute xl:-bottom-[48%] lg:-bottom-[28%] bottom-[10%] left-0"
+            alt=""
+            width={500}
+            height={1000}
+        />
+    </div>
+    <div
+        class="flex lg:flex-row flex-col md:ml-0 ml-40 md:justify-between justify-center lg:translate-y-[30%] md:-translate-x-0 -translate-x-[20%] translate-y-[0%] xl:px-48 lg:px-5 md:px-12 px-10 gap-x-10 md:min-h-[40vh] min-h-[115vh] w-full"
+    >
+        <div
+            class="animate-me relative xl:size-[90%] lg:size-[80%] md:size-[100%] size-[40vh]"
+        >
+            <Image
+                src="/image/img_02.jpeg"
+                class="rounded-[20px] relative drop-shadow-md"
+                alt=""
+                width={500}
+                height={1000}
+            />
+            <Image
+                id="playButton"
+                src="/image/BUTTON PLAY.svg"
+                class="absolute lg:top-[20%] md:top-[25%] top-[14%] lg:size-32 md:size-32 size-24 cursor-pointer hover:opacity-50 duration-300 lg:left-[33%] md:left-[35%] left-[35%]"
+                alt=""
+                width={500}
+                height={1000}
+            />
+        </div>
+        <div class="animate-me02 flex flex-col md:mb-10 lg:mt-2 md:mt-5 -mt-10">
+            <div
+                class="text-white md:min-w-[85%] min-w-[40vh] leading-[30px] lg:text-[20px] md:text-[30px] text-[18px]"
+            >
+                Serenatas con amplio repertorio para cualquier tipo de ocasión.
+                Servicio de Mariachis en Cali, Jamundí, Yumbo, Palmira y todo el
+                Valle del Cauca.
+            </div>
+            <button
+                class="md:mt-20 mt-10 px-5 py-2 cursor-pointer bg-white rounded-md drop-shadow-md"
+            >
+                <span class="font-bold"> Ver Repertorio </span>
+            </button>
+        </div>
+    </div>
+</section>

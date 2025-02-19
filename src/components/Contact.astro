@@ -1,0 +1,70 @@
+---
+import FormInput from "@/components/FormInput.astro";
+import { contactInfo } from "@/model/model";
+import { Image } from "astro:assets";
+---
+
+<section
+    id="contacto"
+    class="bg-[#000000] flex items-center justify-center relative overflow-hidden xl:min-h-[200vh] lg:min-h-[130vh] md:min-h-[120vh] min-h-[170vh] w-full"
+>
+    <div
+        class="flex xl:flex-row flex-col z-20 items-center overflow-hidden justify-evenly mt-10 md:min-w-6xl min-w-[90%] lg:min-h-[80vh] md:min-h-[130vh] min-h-[150vh] rounded-md drop-shadow-md bg-white"
+    >
+        <div class="">
+            {
+                contactInfo.map((item) => (
+                    <div class="flex items-center gap-10 m-5">
+                        <Image
+                            class="size-20 hover:opacity-50 duration-300 cursor-pointer"
+                            src={item.icon}
+                            alt=""
+                            height={20}
+                            width={20}
+                        />
+
+                        <div class="flex flex-col gap-y-3">
+                            <span class="text-black font-bold ml-2">
+                                {item.name}
+                            </span>
+                            <span class="text-black ml-2">{item.num}</span>
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+        <div class="">
+            <h1 class="flex items-center justify-center font-bold text-lg">
+                Contactanos
+            </h1>
+            <form
+                action=""
+                class="flex flex-col items-center justify-center gap-y-5"
+            >
+                <FormInput name="Ingresa tu Nombre" />
+                <FormInput name="Numero de telefono" />
+                <FormInput name="Fecha de la Serenata" icon="true/" />
+                <textarea
+                    class="border-b-2 border-black text-gray-500 lg:min-w-[70vh] md:min-w-[60vh] min-w-[36vh]"
+                    placeholder="Comentario"
+                    >Comentario
+                </textarea>
+                <button
+                    class="group relative h-12 mb-10 overflow-hidden overflow-x-hidden mt-5 rounded-md bg-neutral-950 px-8 py-2 text-neutral-50"
+                >
+                    <span class="relative z-10">Enviar Mensaje </span>
+                    <span class="absolute inset-0 overflow-hidden rounded-md">
+                        <span
+                            class="absolute left-0 aspect-square w-full origin-center -translate-x-full rounded-full bg-gray-400 transition-all duration-700 group-hover:-translate-x-0 group-hover:scale-150"
+                        >
+                        </span>
+                    </span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div class="absolute bottom-0 left 0 z-2 right-0">
+        <Image src="/vectors/Group 1.svg" alt="" width={1400} height={1400} />
+    </div>
+</section>

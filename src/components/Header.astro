@@ -1,0 +1,171 @@
+---
+import CarouselText from "@/components/CarouselText.astro";
+import { navLinks } from "@/model/model";
+import { Image } from "astro:assets";
+---
+
+<header
+    class="flex flex-col items-center justify-center overflow-hidden w-full"
+    id="home"
+>
+    <nav
+        class="md:min-h-[50px] min-h-[100px] lg:px-10 px0 bg-[#111111] w-full text-white"
+    >
+        <div
+            class="flex md:flex-row flex-col md:items-center items-start gap-y-5 md:justify-between justify-start lg:max-w-7xl md:max-w-2xl lg:px-20 px-0"
+        >
+            <div class="flex items-center">
+                <div
+                    class="min-w-[8vh] items-center justify-center min-h-[50px] flex mx-auto bg-white"
+                >
+                    <Image
+                        src="/icons/mdi--music.svg"
+                        alt=""
+                        width={50}
+                        height={50}
+                    />
+                </div>
+                <div class="max-w-[50vh] ml-5">
+                    <CarouselText />
+                </div>
+            </div>
+            <div class="flex items-center">
+                <Image
+                    src="/icons/gg--facebook.svg"
+                    class="cursor-pointer hover:opacity-70 durarion-300 border-l-2 p-3 border-gray-500 min-h-[50px]"
+                    alt=""
+                    width={50}
+                    height={50}
+                />
+                <Image
+                    src="/icons/proicons--instagram.svg"
+                    class="cursor-pointer hover:opacity-70 durarion-300 border-l-2 p-3 border-gray-500 min-h-[50px]"
+                    alt=""
+                    width={50}
+                    height={50}
+                />
+                <Image
+                    src="/icons/prime--twitter.svg"
+                    class="cursor-pointer hover:opacity-70 durarion-300 border-l-2 p-3 border-gray-500 min-h-[50px]"
+                    alt=""
+                    width={50}
+                    height={50}
+                />
+
+                <button
+                    class="cursor-pointer hover:opacity-50 duration-300 md:px-4 px-10 min-h-[50px] gap-x-2 flex items-center justify-center md:rounded-[0px] rounded-[10px] bg-white"
+                >
+                    <Image
+                        src="/icons/logos--whatsapp-icon.svg"
+                        class="size-7"
+                        alt=""
+                        width={50}
+                        height={50}
+                    />
+
+                    <span class="text-black font-bold"> Contactar Ahora </span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <nav
+        class="flex items-center justify-center py-2 min-h-[91px] bg-[#000000] w-full text-white"
+    >
+        <div class="sm:flex hidden gap-x-10">
+            {
+                navLinks.map((link, index) => (
+                    <a
+                        accesskey={link.name}
+                        href={link.link}
+                        class={`${index == 0 ? "border-b-2 border-yellow-500" : ""} font-medium text-md cursor-pointer hover:opacity-50 duration-300`}
+                    >
+                        {link.name}
+                    </a>
+                ))
+            }
+        </div>
+
+        <!-- Botón de menú con hamburguesa o X -->
+        <button class="sm:hidden flex" id="menuButton">
+            <Image
+                src="/icons/material-symbols--menu.svg"
+                alt="Menu"
+                width={50}
+                height={50}
+            />
+        </button>
+    </nav>
+</header>
+
+<!-- Sidebar menu -->
+<div
+    id="sidebar"
+    class="fixed top-0 left-0 bg-[#111111] text-white w-64 min-h-[150vh] hidden z-40 transform transition-transform duration-300 ease-in-out"
+>
+    <div class="flex flex-col items-center mt-10">
+        <!-- Cerrar con X -->
+        <button
+            id="closeSidebarButton"
+            class="absolute top-5 right-5 text-white text-2xl"
+        >
+            &times; <!-- Aquí usamos el símbolo de la X -->
+        </button>
+
+        {
+            navLinks.map((link, index) => (
+                <a
+                    accesskey={link.name}
+                    href={link.link}
+                    class="font-medium text-lg py-4 hover:opacity-70"
+                >
+                    {link.name}
+                </a>
+            ))
+        }
+    </div>
+</div>
+
+<script>
+    let isSidebarOpen = false;
+
+    function toggleSidebar() {
+        isSidebarOpen = !isSidebarOpen;
+        const sidebar = document.getElementById("sidebar");
+        const menuIcon = document.getElementById(
+            "menuIcon",
+        ) as HTMLImageElement;
+
+        if (!sidebar || !menuIcon) {
+            throw new Error(
+                "No se pudo encontrar el sidebar o el icono del menú",
+            );
+        }
+
+        // Cambiar entre el ícono de hamburguesa y la X
+        if (isSidebarOpen) {
+            sidebar.classList.remove("hidden");
+            sidebar.classList.add("block");
+            menuIcon.src = "/icons/ic--baseline-close.svg"; // Cambiar el icono a X
+        } else {
+            sidebar.classList.remove("block");
+            sidebar.classList.add("hidden");
+            menuIcon.src = "/icons/material-symbols--menu.svg"; // Volver al icono de hamburguesa
+        }
+    }
+
+    // Asegúrate de que el botón de menú funcione
+    const menuButton = document.getElementById("menuButton");
+    if (menuButton) {
+        menuButton.addEventListener("click", toggleSidebar);
+    }
+
+    // Cerrar el sidebar cuando se hace clic en la X
+    const closeSidebarButton = document.getElementById("closeSidebarButton");
+    if (closeSidebarButton) {
+        closeSidebarButton.addEventListener("click", () => {
+            // Llamar a toggleSidebar para cerrar el sidebar
+            toggleSidebar();
+        });
+    }
+</script>

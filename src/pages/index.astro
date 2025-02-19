@@ -1,0 +1,60 @@
+---
+import Layout from "../layouts/Layout.astro";
+import "../styles/global.css";
+import Header from "@/components/Header.astro";
+import Hero from "@/components/Hero.astro";
+import SongList from "@/components/SongList.astro";
+import Gallery from "@/components/Gallery.astro";
+import Contact from "@/components/Contact.astro";
+import Footer from "@/components/Footer.astro";
+import Modal from "@/components/Modal.astro";
+import { Image } from "astro:assets";
+---
+
+<Layout>
+  <main class="flex flex-col items-center relative overflow-hidden justify-center w-full">
+    <Header />
+    <Hero />
+    <SongList />
+
+    {/* Gradient Effects */}
+    <div class="absolute top-[26%] right-0 z-40 min-w-[20vh] min-h-[35vh] bg-gradient-to-r from-transparent via-[#FFD700] to-transparent opacity-40 blur-3xl rotate-45 pointer-events-none"></div>
+    <div class="absolute top-[42%] right-0 z-40 min-w-[20vh] min-h-[40vh] bg-gradient-to-r from-transparent via-[#FFD700] to-transparent opacity-40 blur-3xl rotate-90 pointer-events-none"></div>
+
+    <Gallery />
+    <Contact />
+    <Footer />
+
+    {/* Video Modal */}
+    <Modal id="videoModal" closeButtonId="closeModal">
+      <iframe
+        id="youtubeIframe"
+        class="w-full min-h-[70vh] mt-20"
+        src="https://www.youtube.com/embed/1BTh5HgdEyE"
+        frameborder="0"
+        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+      />
+    </Modal>
+
+    {/* Image Modal */}
+    <Modal id="imageModal" closeButtonId="closeImageModal">
+      <img
+        id="modalImage"
+        class="max-w-[50%] h-full object-contain"
+        alt="Modal Image"
+      />
+    </Modal>
+
+    {/* WhatsApp Button */}
+    <button class="fixed top-[80%] right-[5%] z-40 hover:scale-105 duration-300 cursor-pointer">
+      <Image
+        src="/icons/logos--whatsapp-icon.svg"
+        class="size-20"
+        alt="WhatsApp"
+        width={20}
+        height={20}
+      />
+    </button>
+  </main>
+</Layout>
