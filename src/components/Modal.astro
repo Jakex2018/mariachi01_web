@@ -2,9 +2,10 @@
 // Modal.astro
 const { id, closeButtonId, modalContent } = Astro.props;
 ---
+
 <div id={id} class="fixed inset-0 bg-black bg-opacity-50 hidden justify-center items-center z-50">
   <div class="relative min-w-[50%] h-full">
     <button id={closeButtonId} class="cursor-pointer hover:opacity-50 duration-300 absolute top-0 right-0 text-white text-2xl font-bold p-5">X</button>
-    {modalContent}
+    <div>{modalContent}</div> <!-- Aquí se inyectará el contenido del modal -->
   </div>
 </div>

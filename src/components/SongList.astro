@@ -31,7 +31,8 @@ import { Image } from "astro:assets";
         class="flex lg:flex-row flex-col md:ml-0 ml-40 md:justify-between justify-center lg:translate-y-[30%] md:-translate-x-0 -translate-x-[20%] translate-y-[0%] xl:px-48 lg:px-5 md:px-12 px-10 gap-x-10 md:min-h-[40vh] min-h-[115vh] w-full"
     >
         <div
-            class="animate-me relative xl:size-[90%] lg:size-[80%] md:size-[100%] size-[40vh]"
+            data-aos="fade-right"
+            class="relative xl:size-[90%] lg:size-[80%] md:size-[100%] size-[40vh]"
         >
             <Image
                 src="/image/img_02.jpeg"
@@ -49,7 +50,10 @@ import { Image } from "astro:assets";
                 height={1000}
             />
         </div>
-        <div class="animate-me02 flex flex-col md:mb-10 lg:mt-2 md:mt-5 -mt-10">
+        <div
+            data-aos="fade-left"
+            class="flex flex-col md:mb-10 lg:mt-2 md:mt-5 -mt-10"
+        >
             <div
                 class="text-white md:min-w-[85%] min-w-[40vh] leading-[30px] lg:text-[20px] md:text-[30px] text-[18px]"
             >
@@ -65,3 +69,32 @@ import { Image } from "astro:assets";
         </div>
     </div>
 </section>
+
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const playButton = document.getElementById("playButton");
+      const closeModalButton = document.getElementById("closeModal");
+      const videoModal = document.getElementById("videoModal");
+  
+      if (!playButton || !closeModalButton || !videoModal) {
+        console.error("No se pudo encontrar el botón de cerrar o el modal");
+        return; // Termina el script si no se encuentran los elementos
+      }
+  
+      closeModalButton.addEventListener("click", () => {
+        videoModal.style.display = "none";
+      });
+  
+      playButton.addEventListener("click", () => {
+        videoModal.style.display = "flex";
+      });
+  
+      videoModal.addEventListener("click", (event) => {
+        if (event.target === videoModal) {
+          videoModal.style.display = "none";
+        }
+      });
+    });
+  </script>

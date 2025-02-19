@@ -1,9 +1,14 @@
+---
+import "aos/dist/aos.css";
+---
+
 <!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 		<meta name="generator" content={Astro.generator} />
 		<title>Astro Basics</title>
 	</head>
@@ -12,39 +17,17 @@
 		<script
 			src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"
 		></script>
-		<script src="../js/interceptionObserver.js"></script>
+
+		<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 		<script>
-			document.addEventListener("DOMContentLoaded", function () {
-				const playButton = document.getElementById("playButton");
-				const closeModalButton = document.getElementById("closeModal");
-				const videoModal = document.getElementById("videoModal");
-
-				if (!playButton || !closeModalButton || !videoModal) {
-					console.error(
-						"No se pudo encontrar el botón de cerrar o el modal",
-					);
-					return; // Termina el script si no se encuentran los elementos
-				}
-
-				closeModalButton.addEventListener("click", () => {
-					videoModal.style.display = "none";
-				});
-
-				playButton.addEventListener("click", () => {
-					videoModal.style.display = "flex";
-				});
-
-				videoModal.addEventListener("click", (event) => {
-					if (event.target === videoModal) {
-						videoModal.style.display = "none";
-					}
-				});
-			});
+			import AOS from "aos";
+			AOS.init();
 		</script>
+		
 	</body>
 </html>
 
-<style>
+<style is:global>
 	html,
 	body {
 		margin: 0;
@@ -55,5 +38,4 @@
 		font-family: "Montserrat";
 		font-style: normal;
 	}
-	@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 </style>
