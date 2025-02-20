@@ -90,6 +90,7 @@ import { Image } from "astro:assets";
         <button class="sm:hidden flex" id="menuButton">
             <Image
                 src="/icons/material-symbols--menu.svg"
+                class="cursor-pointer hover:scale-105 duration-300"
                 alt="Menu"
                 width={50}
                 height={50}
@@ -130,29 +131,32 @@ import { Image } from "astro:assets";
     let isSidebarOpen = false;
 
     function toggleSidebar() {
-        isSidebarOpen = !isSidebarOpen;
-        const sidebar = document.getElementById("sidebar");
-        const menuIcon = document.getElementById(
-            "menuIcon",
-        ) as HTMLImageElement;
+    isSidebarOpen = !isSidebarOpen;
+    const sidebar = document.getElementById("sidebar");
+    const menuButton = document.getElementById("menuButton");
 
-        if (!sidebar || !menuIcon) {
-            throw new Error(
-                "No se pudo encontrar el sidebar o el icono del menú",
-            );
-        }
-
-        // Cambiar entre el ícono de hamburguesa y la X
-        if (isSidebarOpen) {
-            sidebar.classList.remove("hidden");
-            sidebar.classList.add("block");
-            menuIcon.src = "/icons/ic--baseline-close.svg"; // Cambiar el icono a X
-        } else {
-            sidebar.classList.remove("block");
-            sidebar.classList.add("hidden");
-            menuIcon.src = "/icons/material-symbols--menu.svg"; // Volver al icono de hamburguesa
-        }
+    if (!sidebar || !menuButton) {
+        throw new Error("No se pudo encontrar el sidebar o el botón del menú");
     }
+
+    // Cambiar entre el ícono de hamburguesa y la X
+    if (isSidebarOpen) {
+        sidebar.classList.remove("hidden");
+        sidebar.classList.add("block");
+        // Cambiar la imagen del botón al ícono de la X
+        menuButton.innerHTML = `
+            <Image src="/icons/ic--baseline-close.svg" alt="Close" width={50} height={50} />
+        `;
+    } else {
+        sidebar.classList.remove("block");
+        sidebar.classList.add("hidden");
+        // Volver al ícono de la hamburguesa
+        menuButton.innerHTML = `
+            <Image src="/icons/material-symbols--menu.svg" alt="Menu" width={50} height={50} />
+        `;
+    }
+}
+
 
     // Asegúrate de que el botón de menú funcione
     const menuButton = document.getElementById("menuButton");
